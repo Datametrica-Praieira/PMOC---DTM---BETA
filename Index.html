@@ -3,8 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PMOC - DTM | Portal de Acesso</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>PMOC - DTM | Portal Mobile</title>
+    <!-- Favicon da Datametrica (estatístico) -->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/datametrica/logo/main/fav.png">
     <style>
         body,
         html {
@@ -14,7 +17,8 @@
             width: 100%;
             overflow: hidden;
             background-color: #121212;
-            font-family: sans-serif;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         iframe {
@@ -24,6 +28,7 @@
             width: 100%;
             height: 100%;
             border: none;
+            display: block;
         }
 
         .loading-screen {
@@ -37,19 +42,26 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 10;
-            color: white;
-            transition: opacity 0.5s ease;
+            z-index: 100;
+            transition: opacity 0.6s ease;
         }
 
         .loader {
-            border: 4px solid rgba(190, 30, 45, 0.1);
+            border: 4px solid rgba(190, 30, 45, 0.15);
             border-top: 4px solid #BE1E2D;
             border-radius: 50%;
             width: 50px;
             height: 50px;
             animation: spin 1s linear infinite;
             margin-bottom: 20px;
+        }
+
+        .brand {
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #BE1E2D;
+            margin-bottom: 8px;
+            text-transform: uppercase;
         }
 
         @keyframes spin {
@@ -67,20 +79,18 @@
 <body>
 
     <div id="loader" class="loading-screen">
+        <div class="brand">DTM - PMOC</div>
         <div class="loader"></div>
-        <p>Conectando ao terminal PMOC DTM...</p>
-        <p style="font-size: 12px; color: #666; margin-top: 10px;">Se demorar, verifique se você está logado no Google.
-        </p>
+        <p style="font-size: 14px; opacity: 0.8;">Sincronizando Terminal...</p>
     </div>
 
     <!-- 
-        COMO USAR:
-        1. Vá ao seu script no Google (Index.html / Codigo.gs)
-        2. Clique em Implantar > Gerenciar Implantações > Copie a URL gerada (termina em /exec)
-        3. Cole essa URL no atributo SRC abaixo.
+        IMPORTANTE: 
+        1. Substitua o SRC abaixo pela sua URL do Apps Script que termina em /exec
+        2. Certifique-se de que este arquivo se chama EXATAMENTE index.html no GitHub
     -->
-    <iframe id="appFrame" src="SUA_URL_DO_APPS_SCRIPT_AQUI" allow="camera; geolocation; microphone"
-        onload="document.getElementById('loader').style.opacity='0'; setTimeout(()=>document.getElementById('loader').style.display='none', 500)">
+    <iframe id="appFrame" src="COLE_AQUI_SEU_LINK_DO_GOOGLE_APPS_SCRIPT_FINAL" allow="camera; geolocation; microphone"
+        onload="setTimeout(() => { document.getElementById('loader').style.opacity='0'; setTimeout(()=>document.getElementById('loader').style.display='none', 600); }, 1500)">
     </iframe>
 
 </body>
